@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClInclude Include="include\Pagong\Core\Application.h" />
+    <ClInclude Include="include\Pagong\Core\Core.h" />
+    <ClInclude Include="include\pch.h" />
+    <ClInclude Include="include\Pagong\Core\PrimitiveTypes.h" />
+    <ClInclude Include="include\Pagong\Platform\Win32\WindowsEntryPoint.h" />
+    <ClInclude Include="vendor\Direct3D12\include\d3dx12.h" />
+    <ClInclude Include="include\Pagong\Core\CoreMinimal.h" />
+    <ClInclude Include="include\Pagong\Core\CoreDefinitions.h" />
+    <ClInclude Include="include\Pagong\Platform\EntryPoint.h" />
+    <ClInclude Include="include\Pagong\Core\Window.h" />
+    <ClInclude Include="include\Pagong\Core\Aliases.h" />
+    <ClInclude Include="include\Pagong\Platform\Win32\WindowsWindow.h" />
+    <ClInclude Include="include\Pagong\Core\MathTypes.h" />
+    <ClInclude Include="include\Pagong\Setting\ProjectSettings.h" />
+    <ClInclude Include="include\Pagong\Core\Container\String.h" />
+    <ClInclude Include="include\Pagong\Core\Logging\Log.h" />
+    <ClInclude Include="include\Pagong\Core\Logging\LogLevel.h" />
+    <ClInclude Include="include\Pagong\Core\Logging\LogMacros.h" />
+    <ClInclude Include="include\Pagong\Core\Templates\Singleton.h" />
+    <ClInclude Include="include\Pagong\Core\Logging\LogInfo.h" />
+    <ClInclude Include="include\Pagong\Core\Assert.h" />
+    <ClInclude Include="include\Pagong\Platform\Platform.h" />
+    <ClInclude Include="include\Pagong\Core\CoreTypes.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\pch.cpp" />
+    <ClCompile Include="src\Pagong\Core\Application.cpp" />
+    <ClCompile Include="src\Pagong\Core\Window.cpp" />
+    <ClCompile Include="src\Pagong\Platform\Win32\WindowsWindow.cpp" />
+    <ClCompile Include="src\Pagong\Core\Debug\Log.cpp" />
+    <ClCompile Include="src\Pagong\Core\Container\String.cpp" />
+    <ClCompile Include="src\Pagong\Platform\Win32\PlatformWin32.cpp" />
+    <ClCompile Include="src\Pagong\Settings\ProjectSettings.cpp" />
+    <ClCompile Include="src\Pagong\Core\Logging\LogLevel.cpp" />
+  </ItemGroup>
+</Project>

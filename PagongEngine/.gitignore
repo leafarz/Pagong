@@ -1,0 +1,10 @@
+# binaries
+[Bb]in/
+[Oo]bj/
+
+# visual studio
+.vs/
+*.user
+
+# rider
+.idea/
