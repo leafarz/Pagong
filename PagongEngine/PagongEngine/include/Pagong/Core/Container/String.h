@@ -15,5 +15,6 @@ namespace Pagong::String
 
     string PAGONG_API ToString(const wstring& ws);
     wstring PAGONG_API ToWString(const string& s);
+    wstring PAGONG_API ToWString(int32 value);
     string PAGONG_API Printf(const string& msg, ...);
 }

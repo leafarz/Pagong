@@ -5,25 +5,19 @@ namespace Pagong::Win32
 {
     LRESULT CALLBACK WindowsWindow::HandleMsgSetup(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
     {
-        /* Setup will call member WndProc function instead of static.
-         * This part of the code will only be called for initialization.
-         * HandleMsgThunk will be the "WndProc" function.
-         * This links the windows api side to our WindowsWindow instance
-         */
         if (msg == WM_NCCREATE)
         {
-            const CREATESTRUCTW* const pCreate = reinterpret_cast<CREATESTRUCTW*>(lParam);
-            WindowsWindow* const pWnd = static_cast<WindowsWindow*>(pCreate->lpCreateParams);
-            SetWindowLongPtr(hWnd, GWLP_USERDATA, reinterpret_cast<LONG_PTR>(pWnd));
+            const CREATESTRUCTW* const param = reinterpret_cast<CREATESTRUCTW*>(lParam);
+            WindowsWindow* const window = static_cast<WindowsWindow*>(param->lpCreateParams);
+            SetWindowLongPtr(hWnd, GWLP_USERDATA, reinterpret_cast<LONG_PTR>(window));
             SetWindowLongPtr(hWnd, GWLP_WNDPROC, reinterpret_cast<LONG_PTR>(&WindowsWindow::HandleMsgThunk));
-            return pWnd->WndProc(hWnd, msg, wParam, lParam);
+            return window->WndProc(hWnd, msg, wParam, lParam);
         }
         return DefWindowProc(hWnd, msg, wParam, lParam);
     }
 
     LRESULT CALLBACK WindowsWindow::HandleMsgThunk(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
     {
-        // This will call the WndProc function of the WindowsWindow instance that is set from HandleMsgSetup
         WindowsWindow* const pWnd = reinterpret_cast<WindowsWindow*>(GetWindowLongPtr(hWnd, GWLP_USERDATA));
         return pWnd->WndProc(hWnd, msg, wParam, lParam);
     }
@@ -45,19 +39,17 @@ namespace Pagong::Win32
 
         case WM_MOVE:
         {
-            SetPos({
-                (int32)(short)LOWORD(lParam),
-                (int32)(short)HIWORD(lParam)
-            });
+            int32 x = (int32)(short)LOWORD(lParam);
+            int32 y = (int32)(short)HIWORD(lParam);
+            SetPos({ x, y });
             return 0;
         }
 
         case WM_SIZE:
         {
-            SetSize({
-                (uint32)(LOWORD(lParam)),
-                (uint32)(HIWORD(lParam))
-            });
+            uint32 width = (uint32)(LOWORD(lParam));
+            uint32 height = (uint32)(HIWORD(lParam));
+            SetSize({ width, height });
             return 0;
         }
 
@@ -73,11 +65,11 @@ namespace Pagong::Win32
     {
         m_Class = InitializeWindow(windowInitInfo);
 
-        uint8 res = RegisterClassEx(&m_Class);
-        PG_ASSERT((uint32)res, GetLastErrorString().c_str());
+        bool res = RegisterClassEx(&m_Class);
+        PG_ASSERT(res, GetLastErrorString().c_str());
 
         m_Handle = CreateWindow(windowInitInfo, m_Class);
-        PG_ASSERT((uint32)m_Handle, GetLastErrorString().c_str());
+        PG_ASSERT(m_Handle, GetLastErrorString().c_str());
 
         ShowWindow(m_Handle, SW_SHOW);
         UpdateWindow(m_Handle);
@@ -86,6 +78,11 @@ namespace Pagong::Win32
     WindowsWindow::~WindowsWindow()
     {
         DestroyWindow(m_Handle);
+    }
+
+    void* WindowsWindow::GetHandle() const
+    {
+        return m_Handle;
     }
 
     bool WindowsWindow::ProcessMessage()
@@ -118,6 +115,16 @@ namespace Pagong::Win32
     void WindowsWindow::SetSize(const Math::uivec2& size)
     {
         m_Info.Size = size;
+    }
+
+    const uint32 WindowsWindow::GetWidth() const
+    {
+        return m_Info.Size.x;
+    }
+
+    const uint32 WindowsWindow::GetHeight() const
+    {
+        return m_Info.Size.y;
     }
 
     const Math::ivec2 WindowsWindow::GetPos() const
@@ -158,7 +165,7 @@ namespace Pagong::Win32
         POINT pos{ 0, 0 };
         GetCursorPos(&pos);
         HMONITOR monitor = MonitorFromPoint(pos, MONITOR_DEFAULTTOPRIMARY);
-        MONITORINFO monitorInfo;
+        MONITORINFO monitorInfo {};
         monitorInfo.cbSize = sizeof(monitorInfo);
         GetMonitorInfoW(monitor, &monitorInfo);
         int32 x = monitorInfo.rcWork.left + windowInitInfo.Pos.x;
@@ -166,7 +173,7 @@ namespace Pagong::Win32
         m_Info.Pos = { x , y };
 
 
-        WNDCLASSEX window;
+        WNDCLASSEX window {};
         window.cbSize = sizeof(window);
         window.style = CS_DBLCLKS;
         window.lpfnWndProc = HandleMsgSetup;

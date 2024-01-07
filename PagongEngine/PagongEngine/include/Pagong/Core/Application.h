@@ -1,13 +1,14 @@
 #pragma once
 #include "Pagong/Core/CoreDefinitions.h"
 #include "Pagong/Core/Aliases.h"
+#include "Pagong/Graphics/GraphicsDebug.h"
+#include "Pagong/Graphics/Renderer.h"
 
 #define CREATEAPP(x) Pagong::Application* CreateApplication() { return new x; }
 
 namespace Pagong
 {
 	class Window;
-
 	class PAGONG_API Application
 	{
 	public:
@@ -29,7 +30,9 @@ namespace Pagong
 		virtual void Configure(ProjectSettings& projectSettings) = 0;
 
 	private:
-		TUnique<Window> m_Window;
+		TShared<Window> m_Window;
+		TUnique<Graphics::Renderer> m_Renderer;
+		TUnique<Graphics::GraphicsDebug> m_GraphicsDebug;
 	};
 
 	Application* CreateApplication();

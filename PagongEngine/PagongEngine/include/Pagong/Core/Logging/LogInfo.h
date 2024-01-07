@@ -9,7 +9,7 @@ namespace Pagong
 		string Msg;
 		string Filepath;
 		string Function;
-		uint32 Line;
+		int32 Line;
 		LogLevel LogLevel;
 	};
 }

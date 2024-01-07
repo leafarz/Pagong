@@ -4,7 +4,7 @@
 
 extern Pagong::Application* CreateApplication();
 
-int CALLBACK WinMain(HINSTANCE, HINSTANCE, LPSTR, INT)
+int CALLBACK WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _In_ LPSTR lpCmdLine, _In_ INT nShowCmd)
 {
     auto application = CreateApplication();
     application->Initialize();

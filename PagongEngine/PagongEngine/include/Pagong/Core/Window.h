@@ -22,9 +22,12 @@ namespace Pagong
 		static TUnique<Window> Create(const WindowInitInfo& windowProps);
 	
 	public:
+		virtual void* GetHandle() const = 0;
 		virtual bool ProcessMessage() = 0;
 		virtual void Close() = 0;
 		virtual const Math::uivec2 GetSize() const = 0;
+		virtual const uint32 GetWidth() const = 0;
+		virtual const uint32 GetHeight() const = 0;
 		virtual void SetSize(const Math::uivec2& size) = 0;
 		virtual const Math::ivec2 GetPos() const = 0;
 		virtual void SetPos(const Math::ivec2& pos) = 0;

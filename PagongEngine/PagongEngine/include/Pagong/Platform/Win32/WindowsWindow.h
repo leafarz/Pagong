@@ -36,10 +36,13 @@ namespace Pagong::Win32
 		~WindowsWindow();
 
 #pragma region Window Virtuals
+		virtual void* GetHandle() const;
 		virtual bool ProcessMessage();
 		virtual void Close();
 		virtual const Math::uivec2 GetSize() const;
 		virtual void SetSize(const Math::uivec2& size);
+		virtual const uint32 GetWidth() const;
+		virtual const uint32 GetHeight() const;
 		virtual const Math::ivec2 GetPos() const;
 		virtual void SetPos(const Math::ivec2& pos);
 #pragma endregion Window Virtuals

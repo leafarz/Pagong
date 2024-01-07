@@ -1,6 +1,6 @@
 #include "pch.h"
 #include "Pagong/Core/Application.h"
-
+#include "Pagong/Core/MathTypes.h"
 namespace Pagong
 {
 	Application::Application()
@@ -26,29 +26,16 @@ namespace Pagong
 			projectSettings.GetWindowSize(),
 			projectSettings.GetWindowPos()
 		});
+
+		m_GraphicsDebug = Graphics::GraphicsDebug::Create(projectSettings.GetGraphicsApi());
+		m_GraphicsDebug->Initialize();
+
+		m_Renderer = Graphics::Renderer::Create(projectSettings.GetGraphicsApi());
+		m_Renderer->Initialize(m_Window->GetWidth(), m_Window->GetHeight(), m_Window->GetHandle());
 	}
 
 	void Application::Run()
 	{
-		//while (!quit)
-		//{
-		//    // Update the camera transform based on interactive
-		//    // inputs or by following a predefined path.
-		//    updateCamera();
-		//    // Update positions, orientations and any other
-		//    // relevant visual state of any dynamic elements
-		//    // in the scene.
-		//    updateSceneElements();
-		//    // Render a still frame into an off-screen frame
-		//    // buffer known as the "back buffer".
-		//    renderScene();
-		//    // Swap the back buffer with the front buffer, making
-		//    // the most recently rendered image visible
-		//    // on-screen. (Or, in windowed mode, copy (blit) the
-		//    // back buffer's contents to the front buffer.
-		//    swapBuffers();
-		//}
-
 		while (true)
 		{
 			if (!m_Window->ProcessMessage())
@@ -57,11 +44,16 @@ namespace Pagong
 			}
 
 			OnUpdate(0.0f);
-			Sleep(10);
+
+			m_Renderer->BeginFrame();
+			m_Renderer->EndFrame();
+			Sleep(1);
 		}
 	}
 
 	void Application::Shutdown()
 	{
+		m_Renderer->Shutdown();
+		m_GraphicsDebug->Shutdown();
 	}
 }

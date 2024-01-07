@@ -1,18 +1,17 @@
 #pragma once
-#include <stdint.h>
 #include <string>
 
 namespace Pagong
 {
-	using uint64 = uint64_t;
-	using uint32 = uint32_t;
-	using uint16 = uint16_t;
-	using uint8 = uint8_t;
+	using uint64 = unsigned long long;
+	using uint32 = unsigned int;
+	using uint16 = unsigned short int;
+	using uint8 = unsigned char;
 
-	using int64 = int64_t;
-	using int32 = int32_t;
-	using int16 = int16_t;
-	using int8 = int8_t;
+	using int64 = signed long long;
+	using int32 = signed int;
+	using int16 = signed short int;
+	using int8 = signed char;
 
 	using string = std::string;
 	using wstring = std::wstring;
