@@ -8,7 +8,7 @@ namespace Pagong::Graphics::D3D12
 	public:
 		void Initialize(Microsoft::WRL::ComPtr<ID3D12Resource> resource);
 
-		Microsoft::WRL::ComPtr<ID3D12Resource> GetD3D12Resource();
+		Microsoft::WRL::ComPtr<ID3D12Resource> GetNativeResource();
 
 #pragma region Resource Virtuals
 		void Shutdown() override;

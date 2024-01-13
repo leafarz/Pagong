@@ -45,8 +45,7 @@ namespace Pagong
 
 			OnUpdate(0.0f);
 
-			m_Renderer->BeginFrame();
-			m_Renderer->EndFrame();
+			m_Renderer->OnRender();
 			Sleep(1);
 		}
 	}

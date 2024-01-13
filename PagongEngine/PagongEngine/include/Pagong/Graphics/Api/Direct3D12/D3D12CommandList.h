@@ -16,7 +16,7 @@ namespace Pagong::Graphics::D3D12
 		void Close() override;
 #pragma endregion CommandList Virtuals
 
-		Microsoft::WRL::ComPtr<ID3D12GraphicsCommandList> GetD3D12CommandList();
+		Microsoft::WRL::ComPtr<ID3D12GraphicsCommandList> GetNativeCommandList();
 
 	private:
 		void ClearRenderTargetView_Impl(D3D12_CPU_DESCRIPTOR_HANDLE descriptorHandle, const float* color);

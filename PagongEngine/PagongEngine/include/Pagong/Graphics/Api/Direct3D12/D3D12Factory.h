@@ -11,7 +11,7 @@ namespace Pagong::Graphics::D3D12
 		void Shutdown() override;
 #pragma endregion Factory Virtuals
 
-		Microsoft::WRL::ComPtr<IDXGIFactory4> GetD3D12Factory();
+		Microsoft::WRL::ComPtr<IDXGIFactory4> GetNativeFactory();
 
 	private:
 		Microsoft::WRL::ComPtr<IDXGIFactory4> m_Factory;

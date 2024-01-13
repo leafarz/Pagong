@@ -31,7 +31,7 @@ namespace Pagong::Graphics::D3D12
 	{
 		TShared<D3D12Resource> d3d12Resource = std::dynamic_pointer_cast<D3D12Resource>(resource);
 		CD3DX12_RESOURCE_BARRIER resourceBarrier = CD3DX12_RESOURCE_BARRIER::Transition(
-			d3d12Resource->GetD3D12Resource().Get(), (D3D12_RESOURCE_STATES)stateBefore, (D3D12_RESOURCE_STATES)stateAfter
+			d3d12Resource->GetNativeResource().Get(), (D3D12_RESOURCE_STATES)stateBefore, (D3D12_RESOURCE_STATES)stateAfter
 		);
 		m_CommandList->ResourceBarrier(1, &resourceBarrier);
 	}
@@ -48,7 +48,7 @@ namespace Pagong::Graphics::D3D12
 		DXCHECK(m_CommandList->Close());
 	}
 
-	Microsoft::WRL::ComPtr<ID3D12GraphicsCommandList> D3D12CommandList::GetD3D12CommandList()
+	Microsoft::WRL::ComPtr<ID3D12GraphicsCommandList> D3D12CommandList::GetNativeCommandList()
 	{
 		return m_CommandList;
 	}
@@ -61,7 +61,7 @@ namespace Pagong::Graphics::D3D12
 	ComPtr<ID3D12GraphicsCommandList> D3D12CommandList::CreateCommandList(D3D12_COMMAND_LIST_TYPE type)
 	{
 		ComPtr<ID3D12GraphicsCommandList> commandList;
-		DXCHECK(m_Device->GetD3D12Device()->CreateCommandList(0, type, m_CommandAllocator.Get(), nullptr, IID_PPV_ARGS(&commandList)));
+		DXCHECK(m_Device->GetNativeDevice()->CreateCommandList(0, type, m_CommandAllocator.Get(), nullptr, IID_PPV_ARGS(&commandList)));
 		DXCHECK(commandList->Close());
 		return commandList;
 	}
@@ -69,7 +69,7 @@ namespace Pagong::Graphics::D3D12
 	ComPtr<ID3D12CommandAllocator> D3D12CommandList::CreateCommandAllocator(D3D12_COMMAND_LIST_TYPE type)
 	{
 		ComPtr<ID3D12CommandAllocator> commandAllocator;
-		DXCHECK(m_Device->GetD3D12Device()->CreateCommandAllocator(type, IID_PPV_ARGS(&commandAllocator)));
+		DXCHECK(m_Device->GetNativeDevice()->CreateCommandAllocator(type, IID_PPV_ARGS(&commandAllocator)));
 		return commandAllocator;
 	}
 }

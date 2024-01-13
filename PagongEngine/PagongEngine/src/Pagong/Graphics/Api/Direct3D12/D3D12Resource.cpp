@@ -8,7 +8,7 @@ namespace Pagong::Graphics::D3D12
 		m_Resource = resource;
 	}
 
-	ComPtr<ID3D12Resource> D3D12Resource::GetD3D12Resource()
+	ComPtr<ID3D12Resource> D3D12Resource::GetNativeResource()
 	{
 		return m_Resource;
 	}

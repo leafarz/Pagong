@@ -15,7 +15,7 @@ namespace Pagong::Graphics::D3D12
 		void WaitForFence() override;
 #pragma endregion CommandQueue Virtuals
 
-		Microsoft::WRL::ComPtr<ID3D12CommandQueue> GetD3D12CommandQueue();
+		Microsoft::WRL::ComPtr<ID3D12CommandQueue> GetNativeCommandQueue();
 
 	private:
 		Microsoft::WRL::ComPtr<ID3D12CommandQueue> CreateCommandQueue();

@@ -42,6 +42,8 @@
     <ClInclude Include="include\Pagong\Graphics\SwapChain.h" />
     <ClInclude Include="include\Pagong\Graphics\Api\Direct3D12\D3D12Resource.h" />
     <ClInclude Include="include\Pagong\Graphics\Resource.h" />
+    <ClInclude Include="include\Pagong\Graphics\Adapter.h" />
+    <ClInclude Include="include\Pagong\Graphics\Api\Direct3D12\D3D12Adapter.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Pagong\Core\Application.cpp" />
@@ -67,5 +69,7 @@
     <ClCompile Include="src\Pagong\Graphics\Factory.cpp" />
     <ClCompile Include="src\Pagong\Graphics\SwapChain.cpp" />
     <ClCompile Include="src\Pagong\Graphics\Api\Direct3D12\D3D12Resource.cpp" />
+    <ClCompile Include="src\Pagong\Graphics\Adapter.cpp" />
+    <ClCompile Include="src\Pagong\Graphics\Api\Direct3D12\D3D12Adapter.cpp" />
   </ItemGroup>
 </Project>

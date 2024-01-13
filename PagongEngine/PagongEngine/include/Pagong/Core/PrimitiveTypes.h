@@ -15,4 +15,5 @@ namespace Pagong
 
 	using string = std::string;
 	using wstring = std::wstring;
+	using wchar = wchar_t;
 }

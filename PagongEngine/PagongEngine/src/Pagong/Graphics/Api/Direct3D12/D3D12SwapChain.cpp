@@ -26,7 +26,7 @@ namespace Pagong::Graphics::D3D12
         m_SwapChain = CreateSwapChain(d3d12Factory, d3d12CommandQueue, G_FRAME_COUNT, hWnd, width, height);
 
         m_RTVHeap = CreateDescriptorHeap(D3D12_DESCRIPTOR_HEAP_TYPE_RTV, G_FRAME_COUNT);
-        m_RTVDescriptorSize = m_Device->GetD3D12Device()->GetDescriptorHandleIncrementSize(D3D12_DESCRIPTOR_HEAP_TYPE_RTV);
+        m_RTVDescriptorSize = m_Device->GetNativeDevice()->GetDescriptorHandleIncrementSize(D3D12_DESCRIPTOR_HEAP_TYPE_RTV);
 
         CreateBuffers();
 	}
@@ -75,9 +75,9 @@ namespace Pagong::Graphics::D3D12
         swapChainDesc.Flags = 0;
 
         ComPtr<IDXGISwapChain1> swapChain1;
-        const auto& d3d12Factory = factory->GetD3D12Factory();
+        const auto& d3d12Factory = factory->GetNativeFactory();
         DXCHECK(d3d12Factory->CreateSwapChainForHwnd(
-            commandQueue->GetD3D12CommandQueue().Get(),
+            commandQueue->GetNativeCommandQueue().Get(),
             hWnd,
             &swapChainDesc,
             nullptr,
@@ -96,7 +96,7 @@ namespace Pagong::Graphics::D3D12
         {
             ComPtr<ID3D12Resource> d3d12Resource;
             DXCHECK(m_SwapChain->GetBuffer(i, IID_PPV_ARGS(&d3d12Resource)));
-            m_Device->GetD3D12Device()->CreateRenderTargetView(d3d12Resource.Get(), nullptr, rtvHandle);
+            m_Device->GetNativeDevice()->CreateRenderTargetView(d3d12Resource.Get(), nullptr, rtvHandle);
             rtvHandle.Offset(1, m_RTVDescriptorSize);
 
             wstring name = L"PagongBuffer_" + String::ToWString(i);
@@ -116,7 +116,7 @@ namespace Pagong::Graphics::D3D12
         desc.NumDescriptors = numDescriptors;
         desc.Type = type;
 
-        DXCHECK(m_Device->GetD3D12Device()->CreateDescriptorHeap(&desc, IID_PPV_ARGS(&descriptorHeap)));
+        DXCHECK(m_Device->GetNativeDevice()->CreateDescriptorHeap(&desc, IID_PPV_ARGS(&descriptorHeap)));
 
         return descriptorHeap;
     }

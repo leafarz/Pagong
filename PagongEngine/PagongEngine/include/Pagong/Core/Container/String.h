@@ -3,8 +3,6 @@
 
 namespace Pagong::String
 {
-#define MAX_BUFFER_SIZE 256
-
 #define GET_VA_ARGS(buf, size, lastarg, format, result)                 \
     {                                                                   \
         va_list ap;                                                     \

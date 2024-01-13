@@ -11,18 +11,16 @@ namespace Pagong::Graphics::D3D12
 		D3D12Device();
 
 #pragma region Device Virtuals
-		void Initialize(uint32 width, uint32 height, void* windowHandle) override;
+		void Initialize(Adapter* adapter, uint32 width, uint32 height, void* windowHandle) override;
 		void Shutdown() override;
 #pragma endregion Device Virtuals
 
-		Microsoft::WRL::ComPtr<ID3D12Device2> GetD3D12Device();
+		Microsoft::WRL::ComPtr<ID3D12Device2> GetNativeDevice();
 
 	private:
-		Microsoft::WRL::ComPtr<ID3D12Device2> CreateDevice();
+		Microsoft::WRL::ComPtr<ID3D12Device2> CreateDevice(ComPtr<IDXGIAdapter1> adapter);
 
 	private:
-		const D3D_FEATURE_LEVEL MIN_FEATURE_LEVEL = D3D_FEATURE_LEVEL_12_0;
-
 		Microsoft::WRL::ComPtr<ID3D12Device2> m_Device;
 
 		uint32 m_Width;

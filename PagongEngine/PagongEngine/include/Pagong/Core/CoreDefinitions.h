@@ -21,3 +21,5 @@
 #ifdef _MSC_VER
 #define PG_DEBUGBREAK() __debugbreak()
 #endif
+
+#define MAX_BUFFER_SIZE 512

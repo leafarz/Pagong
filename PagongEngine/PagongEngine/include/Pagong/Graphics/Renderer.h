@@ -1,5 +1,6 @@
 #pragma once
-#include "Device.h"
+#include "Pagong/Graphics/Device.h"
+#include "Pagong/Graphics/Adapter.h"
 
 namespace Pagong::Graphics
 {
@@ -16,12 +17,15 @@ namespace Pagong::Graphics
 	public:
 		Renderer(GraphicsApi graphicsApi);
 		void Initialize(uint32 width, uint32 height, void* windowHandle);
-		void BeginFrame();
-		void EndFrame();
+		void OnRender();
 		void Shutdown();
 
 	private:
+		void LogAdapter();
+
+	private:
 		GraphicsApi m_Api;
+		TUnique<Adapter> m_Adapter;
 		TUnique<Device> m_Device;
 		TShared<CommandList> m_CommandList;
 		TShared<CommandQueue> m_CommandQueue;

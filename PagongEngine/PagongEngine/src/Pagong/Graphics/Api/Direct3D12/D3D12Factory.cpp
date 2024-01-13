@@ -18,7 +18,7 @@ namespace Pagong::Graphics::D3D12
 		m_Factory->Release();
 	}
 
-	Microsoft::WRL::ComPtr<IDXGIFactory4> D3D12Factory::GetD3D12Factory()
+	Microsoft::WRL::ComPtr<IDXGIFactory4> D3D12Factory::GetNativeFactory()
 	{
 		return m_Factory;
 	}
