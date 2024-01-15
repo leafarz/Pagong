@@ -137,6 +137,13 @@ namespace Pagong::Win32
         m_Info.Pos = pos;
     }
 
+    void WindowsWindow::SetTitle(const string& title)
+    {
+        const wstring wsNewTitle = String::ToWString(title);
+        m_Info.Title = wsNewTitle;
+        SetWindowText(m_Handle, wsNewTitle.c_str());
+    }
+
     string WindowsWindow::GetLastErrorString()
     {
         DWORD errorId = GetLastError();

@@ -22,7 +22,6 @@ namespace Pagong::Graphics::D3D12
         HWND hWnd = (HWND)windowHandle;
         TShared<D3D12Factory> d3d12Factory = std::dynamic_pointer_cast<D3D12Factory>(factory);
         TShared<D3D12CommandQueue> d3d12CommandQueue = std::dynamic_pointer_cast<D3D12CommandQueue>(commandQueue);
-
         m_SwapChain = CreateSwapChain(d3d12Factory, d3d12CommandQueue, G_FRAME_COUNT, hWnd, width, height);
 
         m_RTVHeap = CreateDescriptorHeap(D3D12_DESCRIPTOR_HEAP_TYPE_RTV, G_FRAME_COUNT);

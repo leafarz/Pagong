@@ -22,14 +22,14 @@ namespace Pagong::Graphics::D3D12
 		Microsoft::WRL::ComPtr<ID3D12Fence> CreateFence();
 
 	private:
-		Microsoft::WRL::ComPtr<ID3D12CommandQueue> m_CommandQueue;
 		D3D12Device* m_Device;
+		Microsoft::WRL::ComPtr<ID3D12CommandQueue> m_CommandQueue;
 		D3D12_COMMAND_LIST_TYPE m_Type;
 
 
 		// Synchronization objects.
 		HANDLE m_FenceEvent;
-		Microsoft::WRL::ComPtr<ID3D12Fence> m_Fence;
 		uint64 m_FenceValue;
+		Microsoft::WRL::ComPtr<ID3D12Fence> m_Fence;
 	};
 }

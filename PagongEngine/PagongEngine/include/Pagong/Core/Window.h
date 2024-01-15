@@ -31,5 +31,6 @@ namespace Pagong
 		virtual void SetSize(const Math::uivec2& size) = 0;
 		virtual const Math::ivec2 GetPos() const = 0;
 		virtual void SetPos(const Math::ivec2& pos) = 0;
+		virtual void SetTitle(const string& title) = 0;
 	};
 }
