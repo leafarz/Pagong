@@ -1,10 +1,10 @@
 #pragma once
 #include "Pagong/Graphics/CommandQueue.h"
 
-namespace Pagong::Graphics::D3D12
+namespace Pagong::Graphics::DX12
 {
-	class D3D12Device;
-	class D3D12CommandQueue : public CommandQueue
+	class DX12Device;
+	class DX12CommandQueue : public CommandQueue
 	{
 	public:
 #pragma region CommandQueue Virtuals
@@ -22,7 +22,7 @@ namespace Pagong::Graphics::D3D12
 		Microsoft::WRL::ComPtr<ID3D12Fence> CreateFence();
 
 	private:
-		D3D12Device* m_Device;
+		DX12Device* m_Device;
 		Microsoft::WRL::ComPtr<ID3D12CommandQueue> m_CommandQueue;
 		D3D12_COMMAND_LIST_TYPE m_Type;
 

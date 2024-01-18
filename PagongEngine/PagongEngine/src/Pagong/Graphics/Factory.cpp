@@ -1,6 +1,6 @@
 #include "pch.h"
 #include "Pagong/Graphics/Factory.h"
-#include "Pagong/Graphics/Api/Direct3D12/D3D12Factory.h"
+#include "Pagong/Graphics/Api/DX12/DX12Factory.h"
 
 namespace Pagong::Graphics
 {
@@ -8,8 +8,8 @@ namespace Pagong::Graphics
     {
         switch (graphicsApi)
         {
-        case GraphicsApi::D3D12:
-            return MakeShared<D3D12::D3D12Factory>();
+        case GraphicsApi::DX12:
+            return MakeShared<DX12::DX12Factory>();
 
         case GraphicsApi::None:
         default:

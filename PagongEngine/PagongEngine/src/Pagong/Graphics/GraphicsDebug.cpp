@@ -1,6 +1,6 @@
 #include "pch.h"
 #include "Pagong/Graphics/GraphicsDebug.h"
-#include "Pagong/Graphics/Api/Direct3D12/D3D12Debug.h"
+#include "Pagong/Graphics/Api/DX12/DX12Debug.h"
 
 namespace Pagong::Graphics
 {
@@ -8,8 +8,8 @@ namespace Pagong::Graphics
 	{
 		switch (graphicsApi)
 		{
-		case GraphicsApi::D3D12:
-			return MakeUnique<D3D12::D3D12Debug>();
+		case GraphicsApi::DX12:
+			return MakeUnique<DX12::DX12Debug>();
 
 		case GraphicsApi::None:
 		default:

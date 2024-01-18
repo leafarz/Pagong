@@ -1,28 +1,28 @@
 #include "pch.h"
-#include "Pagong/Graphics/Api/Direct3D12/D3D12SwapChain.h"
+#include "Pagong/Graphics/Api/DX12/DX12SwapChain.h"
 #include "Pagong/Graphics/Factory.h"
-#include "Pagong/Graphics/Api/Direct3D12/D3D12Common.h"
-#include "Pagong/Graphics/Api/Direct3D12/D3D12Device.h"
-#include "Pagong/Graphics/Api/Direct3D12/D3D12Factory.h"
-#include "Pagong/Graphics/Api/Direct3D12/D3D12Resource.h"
+#include "Pagong/Graphics/Api/DX12/DX12Common.h"
+#include "Pagong/Graphics/Api/DX12/DX12Device.h"
+#include "Pagong/Graphics/Api/DX12/DX12Factory.h"
+#include "Pagong/Graphics/Api/DX12/DX12Resource.h"
 
-namespace Pagong::Graphics::D3D12
+namespace Pagong::Graphics::DX12
 {
-    TShared<Resource> D3D12SwapChain::GetCurrentRenderTarget()
+    TShared<Resource> DX12SwapChain::GetCurrentRenderTarget()
     {
         return m_renderTargets[m_FrameIndex];
     }
 
-	void D3D12SwapChain::Initialize(
+	void DX12SwapChain::Initialize(
         Device* device, TShared<CommandQueue> commandQueue, TShared<Factory> factory,
         void* windowHandle, uint32 width, uint32 height)
 	{
-		m_Device = (D3D12Device*)device;
+		m_Device = (DX12Device*)device;
 
         HWND hWnd = (HWND)windowHandle;
-        TShared<D3D12Factory> d3d12Factory = std::dynamic_pointer_cast<D3D12Factory>(factory);
-        TShared<D3D12CommandQueue> d3d12CommandQueue = std::dynamic_pointer_cast<D3D12CommandQueue>(commandQueue);
-        m_SwapChain = CreateSwapChain(d3d12Factory, d3d12CommandQueue, G_FRAME_COUNT, hWnd, width, height);
+        TShared<DX12Factory> dx12Factory = std::dynamic_pointer_cast<DX12Factory>(factory);
+        TShared<DX12CommandQueue> dx12CommandQueue = std::dynamic_pointer_cast<DX12CommandQueue>(commandQueue);
+        m_SwapChain = CreateSwapChain(dx12Factory, dx12CommandQueue, G_FRAME_COUNT, hWnd, width, height);
 
         m_RTVHeap = CreateDescriptorHeap(D3D12_DESCRIPTOR_HEAP_TYPE_RTV, G_FRAME_COUNT);
         m_RTVDescriptorSize = m_Device->GetNativeDevice()->GetDescriptorHandleIncrementSize(D3D12_DESCRIPTOR_HEAP_TYPE_RTV);
@@ -30,7 +30,7 @@ namespace Pagong::Graphics::D3D12
         CreateBuffers();
 	}
 
-    void D3D12SwapChain::Shutdown()
+    void DX12SwapChain::Shutdown()
     {
         for (uint32 i = 0; i < G_FRAME_COUNT; ++i)
         {
@@ -41,21 +41,21 @@ namespace Pagong::Graphics::D3D12
         m_SwapChain->Release();
     }
 
-    void D3D12SwapChain::Present()
+    void DX12SwapChain::Present()
     {
         DXCHECK(m_SwapChain->Present(1, 0));
         m_FrameIndex = (m_FrameIndex + 1) % G_FRAME_COUNT;
     }
 
-    D3D12_CPU_DESCRIPTOR_HANDLE D3D12SwapChain::GetRTVHandle()
+    D3D12_CPU_DESCRIPTOR_HANDLE DX12SwapChain::GetRTVHandle()
     {
         D3D12_CPU_DESCRIPTOR_HANDLE rtvHandle = m_RTVHeap->GetCPUDescriptorHandleForHeapStart();
         rtvHandle.ptr += (size_t)m_FrameIndex * m_RTVDescriptorSize;
         return rtvHandle;
     }
 
-    ComPtr<IDXGISwapChain4> D3D12SwapChain::CreateSwapChain(
-        TShared<D3D12Factory> factory, TShared<D3D12CommandQueue> commandQueue,
+    ComPtr<IDXGISwapChain4> DX12SwapChain::CreateSwapChain(
+        TShared<DX12Factory> factory, TShared<DX12CommandQueue> commandQueue,
         uint32 bufferCount, HWND hWnd, uint32 width, uint32 height)
     {
         ComPtr<IDXGISwapChain4> swapChain4;
@@ -88,7 +88,7 @@ namespace Pagong::Graphics::D3D12
         return swapChain4;
     }
 
-    void D3D12SwapChain::CreateBuffers()
+    void DX12SwapChain::CreateBuffers()
     {
         CD3DX12_CPU_DESCRIPTOR_HANDLE rtvHandle(m_RTVHeap->GetCPUDescriptorHandleForHeapStart());
         for (uint32 i = 0; i < G_FRAME_COUNT; ++i)
@@ -101,13 +101,13 @@ namespace Pagong::Graphics::D3D12
             wstring name = L"PagongBuffer_" + String::ToWString(i);
             d3d12Resource->SetName(name.c_str());
 
-            TShared<D3D12Resource> createdResource = MakeShared<D3D12Resource>();
+            TShared<DX12Resource> createdResource = MakeShared<DX12Resource>();
             createdResource->Initialize(d3d12Resource);
             m_renderTargets[i] = createdResource;
         }
     }
 
-    ComPtr<ID3D12DescriptorHeap> D3D12SwapChain::CreateDescriptorHeap(D3D12_DESCRIPTOR_HEAP_TYPE type, uint32 numDescriptors)
+    ComPtr<ID3D12DescriptorHeap> DX12SwapChain::CreateDescriptorHeap(D3D12_DESCRIPTOR_HEAP_TYPE type, uint32 numDescriptors)
     {
         ComPtr<ID3D12DescriptorHeap> descriptorHeap;
 

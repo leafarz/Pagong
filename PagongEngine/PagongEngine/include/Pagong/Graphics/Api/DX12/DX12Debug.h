@@ -1,9 +1,9 @@
 #pragma once
 #include "Pagong/Graphics/GraphicsDebug.h"
 
-namespace Pagong::Graphics::D3D12
+namespace Pagong::Graphics::DX12
 {
-	class D3D12Debug : public GraphicsDebug
+	class DX12Debug : public GraphicsDebug
 	{
 	public:
 #pragma region GraphicsDebug virtuals

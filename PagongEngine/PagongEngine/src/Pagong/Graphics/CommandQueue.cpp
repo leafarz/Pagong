@@ -1,6 +1,6 @@
 #include "pch.h"
 #include "Pagong/Graphics/CommandQueue.h"
-#include "Pagong/Graphics/Api/Direct3D12/D3D12CommandQueue.h"
+#include "Pagong/Graphics/Api/DX12/DX12CommandQueue.h"
 
 namespace Pagong::Graphics
 {
@@ -8,8 +8,8 @@ namespace Pagong::Graphics
     {
         switch (graphicsApi)
         {
-        case GraphicsApi::D3D12:
-            return MakeShared<D3D12::D3D12CommandQueue>();
+        case GraphicsApi::DX12:
+            return MakeShared<DX12::DX12CommandQueue>();
 
         case GraphicsApi::None:
         default:

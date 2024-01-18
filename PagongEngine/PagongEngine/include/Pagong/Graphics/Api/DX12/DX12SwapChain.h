@@ -1,14 +1,14 @@
 #pragma once
 #include "Pagong/Graphics/SwapChain.h"
 
-namespace Pagong::Graphics::D3D12
+namespace Pagong::Graphics::DX12
 {
-	class D3D12CommandQueue;
-	class D3D12Device;
-	class D3D12Factory;
-	class D3D12Resource;
+	class DX12CommandQueue;
+	class DX12Device;
+	class DX12Factory;
+	class DX12Resource;
 
-	class D3D12SwapChain : public SwapChain
+	class DX12SwapChain : public SwapChain
 	{
 
 	public:
@@ -25,7 +25,7 @@ namespace Pagong::Graphics::D3D12
 
 	private:
 		Microsoft::WRL::ComPtr<IDXGISwapChain4> CreateSwapChain(
-			TShared<D3D12Factory> factory, TShared<D3D12CommandQueue> commandQueue,
+			TShared<DX12Factory> factory, TShared<DX12CommandQueue> commandQueue,
 			uint32 bufferCount, HWND hWnd, uint32 width, uint32 height);
 		
 		Microsoft::WRL::ComPtr<ID3D12DescriptorHeap> CreateDescriptorHeap(
@@ -34,10 +34,10 @@ namespace Pagong::Graphics::D3D12
 		void CreateBuffers();
 
 	private:
-		D3D12Device* m_Device;
+		DX12Device* m_Device;
 		Microsoft::WRL::ComPtr<IDXGISwapChain4> m_SwapChain;
 		Microsoft::WRL::ComPtr<ID3D12DescriptorHeap> m_RTVHeap;
-		TShared<D3D12Resource> m_renderTargets[G_FRAME_COUNT];
+		TShared<DX12Resource> m_renderTargets[G_FRAME_COUNT];
 		uint32 m_RTVDescriptorSize;
 		uint32 m_FrameIndex;
 	};

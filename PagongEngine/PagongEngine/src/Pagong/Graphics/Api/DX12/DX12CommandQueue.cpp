@@ -1,35 +1,35 @@
 #include "pch.h"
-#include "Pagong/Graphics/Api/Direct3D12/D3D12CommandQueue.h"
-#include "Pagong/Graphics/Api/Direct3D12/D3D12Common.h"
-#include "Pagong/Graphics/Api/Direct3D12/D3D12CommandList.h"
-#include "Pagong/Graphics/Api/Direct3D12/D3D12Device.h"
+#include "Pagong/Graphics/Api/DX12/DX12CommandQueue.h"
+#include "Pagong/Graphics/Api/DX12/DX12Common.h"
+#include "Pagong/Graphics/Api/DX12/DX12CommandList.h"
+#include "Pagong/Graphics/Api/DX12/DX12Device.h"
 
-namespace Pagong::Graphics::D3D12
+namespace Pagong::Graphics::DX12
 {
-	void D3D12CommandQueue::Initialize(Device* device, uint32 type)
+	void DX12CommandQueue::Initialize(Device* device, uint32 type)
 	{
-        m_Device = (D3D12Device*)device;
+        m_Device = (DX12Device*)device;
         m_Type = (D3D12_COMMAND_LIST_TYPE)type;
         m_Fence = CreateFence();
         m_CommandQueue = CreateCommandQueue();
 	}
 
-    void D3D12CommandQueue::Shutdown()
+    void DX12CommandQueue::Shutdown()
     {
         ClearQueue();
         m_Fence->Release();
         m_CommandQueue->Release();
     }
 
-    uint64 D3D12CommandQueue::Execute(TShared<CommandList> commandList)
+    uint64 DX12CommandQueue::Execute(TShared<CommandList> commandList)
     {
-        TShared<D3D12CommandList> d3d12CommandList = std::dynamic_pointer_cast<D3D12CommandList>(commandList);
-        m_CommandQueue->ExecuteCommandLists(1, (ID3D12CommandList* const*)d3d12CommandList->GetNativeCommandList().GetAddressOf());
+        TShared<DX12CommandList> dx12CommandList = std::dynamic_pointer_cast<DX12CommandList>(commandList);
+        m_CommandQueue->ExecuteCommandLists(1, (ID3D12CommandList* const*)dx12CommandList->GetNativeCommandList().GetAddressOf());
         m_CommandQueue->Signal(m_Fence.Get(), m_FenceValue);
         return m_FenceValue;
     }
 
-    void D3D12CommandQueue::ClearQueue()
+    void DX12CommandQueue::ClearQueue()
     {
         for (uint32 i = 0; i < G_FRAME_COUNT; ++i)
         {
@@ -37,7 +37,7 @@ namespace Pagong::Graphics::D3D12
         }
     }
 
-    void D3D12CommandQueue::WaitForFence()
+    void DX12CommandQueue::WaitForFence()
     {
         if (m_Fence->GetCompletedValue() < m_FenceValue)
         {
@@ -47,12 +47,12 @@ namespace Pagong::Graphics::D3D12
         ++m_FenceValue;
     }
 
-    Microsoft::WRL::ComPtr<ID3D12CommandQueue> D3D12CommandQueue::GetNativeCommandQueue()
+    Microsoft::WRL::ComPtr<ID3D12CommandQueue> DX12CommandQueue::GetNativeCommandQueue()
     {
         return m_CommandQueue;
     }
 
-    Microsoft::WRL::ComPtr<ID3D12CommandQueue> D3D12CommandQueue::CreateCommandQueue()
+    Microsoft::WRL::ComPtr<ID3D12CommandQueue> DX12CommandQueue::CreateCommandQueue()
     {
         ComPtr<ID3D12CommandQueue> d3d12CommandQueue;
 
@@ -80,7 +80,7 @@ namespace Pagong::Graphics::D3D12
         return d3d12CommandQueue;
     }
 
-    ComPtr<ID3D12Fence> D3D12CommandQueue::CreateFence()
+    ComPtr<ID3D12Fence> DX12CommandQueue::DX12CommandQueue::CreateFence()
     {
         ComPtr<ID3D12Fence> fence;
         DXCHECK(m_Device->GetNativeDevice()->CreateFence(0, D3D12_FENCE_FLAG_NONE, IID_PPV_ARGS(&fence)));

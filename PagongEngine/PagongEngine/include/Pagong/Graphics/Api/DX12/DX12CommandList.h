@@ -1,10 +1,10 @@
 #pragma once
 #include "Pagong/Graphics/CommandList.h"
 
-namespace Pagong::Graphics::D3D12
+namespace Pagong::Graphics::DX12
 {
-	class D3D12Device;
-	class D3D12CommandList : public CommandList
+	class DX12Device;
+	class DX12CommandList : public CommandList
 	{
 	public:
 #pragma region CommandList Virtuals
@@ -24,7 +24,7 @@ namespace Pagong::Graphics::D3D12
 		Microsoft::WRL::ComPtr<ID3D12CommandAllocator> CreateCommandAllocator(D3D12_COMMAND_LIST_TYPE type);
 		
 	private:
-		D3D12Device* m_Device;
+		DX12Device* m_Device;
 		Microsoft::WRL::ComPtr<ID3D12GraphicsCommandList> m_CommandList;
 		Microsoft::WRL::ComPtr<ID3D12CommandAllocator> m_CommandAllocator;
 	};

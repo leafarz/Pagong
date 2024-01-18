@@ -91,9 +91,9 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="include\Pagong\Graphics\Adapter.h" />
-    <ClInclude Include="include\Pagong\Graphics\Api\Direct3D12\D3D12Adapter.h" />
+    <ClInclude Include="include\Pagong\Graphics\Api\DX12\DX12Adapter.h" />
     <ClInclude Include="include\Pagong\Core\Engine\EngineGlobals.h" />
-    <ClInclude Include="include\Pagong\Graphics\Api\Direct3D12\D3D12CommandList.h" />
+    <ClInclude Include="include\Pagong\Graphics\Api\DX12\DX12CommandList.h" />
     <ClInclude Include="include\Pagong\Core\CoreTypes.h" />
     <ClInclude Include="include\Pagong\Core\Assert.h" />
     <ClInclude Include="include\Pagong\Core\Templates\Singleton.h" />
@@ -102,13 +102,13 @@
     <ClInclude Include="include\Pagong\Core\MathTypes.h" />
     <ClInclude Include="include\Pagong\Core\Logging\Log.h" />
     <ClInclude Include="include\Pagong\Core\Logging\LogLevel.h" />
-    <ClInclude Include="include\Pagong\Graphics\Api\Direct3D12\D3D12CommandQueue.h" />
-    <ClInclude Include="include\Pagong\Graphics\Api\Direct3D12\D3D12Common.h" />
-    <ClInclude Include="include\Pagong\Graphics\Api\Direct3D12\D3D12Debug.h" />
-    <ClInclude Include="include\Pagong\Graphics\Api\Direct3D12\D3D12Device.h" />
-    <ClInclude Include="include\Pagong\Graphics\Api\Direct3D12\D3D12Factory.h" />
-    <ClInclude Include="include\Pagong\Graphics\Api\Direct3D12\D3D12Resource.h" />
-    <ClInclude Include="include\Pagong\Graphics\Api\Direct3D12\D3D12SwapChain.h" />
+    <ClInclude Include="include\Pagong\Graphics\Api\DX12\DX12CommandQueue.h" />
+    <ClInclude Include="include\Pagong\Graphics\Api\DX12\DX12Common.h" />
+    <ClInclude Include="include\Pagong\Graphics\Api\DX12\DX12Debug.h" />
+    <ClInclude Include="include\Pagong\Graphics\Api\DX12\DX12Device.h" />
+    <ClInclude Include="include\Pagong\Graphics\Api\DX12\DX12Factory.h" />
+    <ClInclude Include="include\Pagong\Graphics\Api\DX12\DX12Resource.h" />
+    <ClInclude Include="include\Pagong\Graphics\Api\DX12\DX12SwapChain.h" />
     <ClInclude Include="include\Pagong\Graphics\CommandList.h" />
     <ClInclude Include="include\Pagong\Graphics\CommandQueue.h" />
     <ClInclude Include="include\Pagong\Graphics\Device.h" />
@@ -136,15 +136,15 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Pagong\Graphics\Adapter.cpp" />
-    <ClCompile Include="src\Pagong\Graphics\Api\Direct3D12\D3D12Adapter.cpp" />
-    <ClCompile Include="src\Pagong\Graphics\Api\Direct3D12\D3D12CommandQueue.cpp" />
-    <ClCompile Include="src\Pagong\Graphics\Api\Direct3D12\D3D12Factory.cpp" />
-    <ClCompile Include="src\Pagong\Graphics\Api\Direct3D12\D3D12Resource.cpp" />
-    <ClCompile Include="src\Pagong\Graphics\Api\Direct3D12\D3D12SwapChain.cpp" />
+    <ClCompile Include="src\Pagong\Graphics\Api\DX12\DX12Adapter.cpp" />
+    <ClCompile Include="src\Pagong\Graphics\Api\DX12\DX12CommandQueue.cpp" />
+    <ClCompile Include="src\Pagong\Graphics\Api\DX12\DX12Factory.cpp" />
+    <ClCompile Include="src\Pagong\Graphics\Api\DX12\DX12Resource.cpp" />
+    <ClCompile Include="src\Pagong\Graphics\Api\DX12\DX12SwapChain.cpp" />
     <ClCompile Include="src\Pagong\Graphics\CommandList.cpp" />
-    <ClCompile Include="src\Pagong\Graphics\Api\Direct3D12\D3D12CommandList.cpp" />
-    <ClCompile Include="src\Pagong\Graphics\Api\Direct3D12\D3D12Debug.cpp" />
-    <ClCompile Include="src\Pagong\Graphics\Api\Direct3D12\D3D12Device.cpp" />
+    <ClCompile Include="src\Pagong\Graphics\Api\DX12\DX12CommandList.cpp" />
+    <ClCompile Include="src\Pagong\Graphics\Api\DX12\DX12Debug.cpp" />
+    <ClCompile Include="src\Pagong\Graphics\Api\DX12\DX12Device.cpp" />
     <ClCompile Include="src\Pagong\Graphics\CommandQueue.cpp" />
     <ClCompile Include="src\Pagong\Graphics\Factory.cpp" />
     <ClCompile Include="src\Pagong\Graphics\GraphicsDebug.cpp" />

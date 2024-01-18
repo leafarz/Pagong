@@ -12,7 +12,7 @@ namespace Pagong::Graphics
 	{
 		switch (graphicsApi)
 		{
-		case GraphicsApi::D3D12:
+		case GraphicsApi::DX12:
 			return MakeUnique<Renderer>(graphicsApi);
 
 		case GraphicsApi::None:

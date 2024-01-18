@@ -6,6 +6,6 @@ namespace Pagong::Graphics
 	enum class GraphicsApi : uint8
 	{
 		None,
-		D3D12
+		DX12
 	};
 }

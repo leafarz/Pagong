@@ -1,9 +1,9 @@
 #pragma once
 #include "Pagong/Graphics/Resource.h"
 
-namespace Pagong::Graphics::D3D12
+namespace Pagong::Graphics::DX12
 {
-	class D3D12Resource : public Resource
+	class DX12Resource : public Resource
 	{
 	public:
 		void Initialize(Microsoft::WRL::ComPtr<ID3D12Resource> resource);

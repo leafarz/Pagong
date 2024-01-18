@@ -1,21 +1,21 @@
 #include "pch.h"
-#include "Pagong/Graphics/Api/Direct3D12/D3D12Common.h"
-#include "Pagong/Graphics/Api/Direct3D12/D3D12Debug.h"
+#include "Pagong/Graphics/Api/DX12/DX12Common.h"
+#include "Pagong/Graphics/Api/DX12/DX12Debug.h"
 
-namespace Pagong::Graphics::D3D12
+namespace Pagong::Graphics::DX12
 {
-	void D3D12Debug::Initialize()
+	void DX12Debug::Initialize()
 	{
 		EnableDebugLayer();
 		EnableLeakTrackingForThread();
 	}
 
-	void D3D12Debug::Shutdown()
+	void DX12Debug::Shutdown()
 	{
 		ReportLiveObjects();
 	}
 
-	void D3D12Debug::EnableDebugLayer()
+	void DX12Debug::EnableDebugLayer()
 	{
 #ifdef _DEBUG
 		ComPtr<ID3D12Debug6> debugController;
@@ -24,7 +24,7 @@ namespace Pagong::Graphics::D3D12
 #endif
 	}
 
-	void D3D12Debug::EnableLeakTrackingForThread()
+	void DX12Debug::EnableLeakTrackingForThread()
 	{
 #ifdef _DEBUG
 		ComPtr<IDXGIDebug1> dxgiDebug;
@@ -33,7 +33,7 @@ namespace Pagong::Graphics::D3D12
 #endif
 	}
 
-	void D3D12Debug::ReportLiveObjects()
+	void DX12Debug::ReportLiveObjects()
 	{
 #ifdef _DEBUG
 		ComPtr<IDXGIDebug1> dxgiDebug;

@@ -1,9 +1,9 @@
 #pragma once
 #include "Pagong/Graphics/Adapter.h"
 
-namespace Pagong::Graphics::D3D12
+namespace Pagong::Graphics::DX12
 {
-	class D3D12Adapter : public Adapter
+	class DX12Adapter : public Adapter
 	{
 	public:
 #pragma region Adapter Virtuals

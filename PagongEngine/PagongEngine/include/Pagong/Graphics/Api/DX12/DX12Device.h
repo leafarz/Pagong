@@ -1,14 +1,14 @@
 #pragma once
 #include "Pagong/Graphics/Device.h"
 #include "Pagong/Graphics/CommandQueue.h"
-#include "Pagong/Graphics/Api/Direct3D12/D3D12CommandQueue.h"
+#include "Pagong/Graphics/Api/DX12/DX12CommandQueue.h"
 
-namespace Pagong::Graphics::D3D12
+namespace Pagong::Graphics::DX12
 {
-	class D3D12Device : public Device
+	class DX12Device : public Device
 	{
 	public:
-		D3D12Device();
+		DX12Device();
 
 #pragma region Device Virtuals
 		void Initialize(Adapter* adapter, uint32 width, uint32 height, void* windowHandle) override;

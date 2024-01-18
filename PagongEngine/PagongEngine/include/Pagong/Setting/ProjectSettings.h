@@ -23,6 +23,6 @@ namespace Pagong
 		string m_GameTitle;
 		Math::uivec2 m_WindowSize = Math::uivec2{400, 400};
 		Math::ivec2 m_WindowPos = Math::ivec2{ 100, 100 };
-		Graphics::GraphicsApi m_GraphicsApi = Graphics::GraphicsApi::D3D12;
+		Graphics::GraphicsApi m_GraphicsApi = Graphics::GraphicsApi::DX12;
 	};
 }

@@ -1,9 +1,9 @@
 #pragma once
 #include "Pagong/Graphics/Factory.h"
 
-namespace Pagong::Graphics::D3D12
+namespace Pagong::Graphics::DX12
 {
-	class D3D12Factory : public Factory
+	class DX12Factory : public Factory
 	{
 	public:
 #pragma region Factory Virtuals

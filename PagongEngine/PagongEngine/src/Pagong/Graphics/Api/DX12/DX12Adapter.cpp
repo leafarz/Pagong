@@ -1,43 +1,43 @@
 #include "pch.h"
-#include "Pagong/Graphics/Api/Direct3D12/D3D12Adapter.h"
-#include "Pagong/Graphics/Api/Direct3D12/D3D12Common.h"
-#include "Pagong/Graphics/Api/Direct3D12/D3D12Device.h"
-#include "Pagong/Graphics/Api/Direct3D12/D3D12Factory.h"
+#include "Pagong/Graphics/Api/DX12/DX12Adapter.h"
+#include "Pagong/Graphics/Api/DX12/DX12Common.h"
+#include "Pagong/Graphics/Api/DX12/DX12Device.h"
+#include "Pagong/Graphics/Api/DX12/DX12Factory.h"
 
-namespace Pagong::Graphics::D3D12
+namespace Pagong::Graphics::DX12
 {
-	void D3D12Adapter::Initialize(TShared<Factory> factory)
+	void DX12Adapter::Initialize(TShared<Factory> factory)
 	{
-        TShared<D3D12Factory> d3d12Factory = std::dynamic_pointer_cast<D3D12Factory>(factory);
-        m_Adapter = GetHardwareAdapter(d3d12Factory->GetNativeFactory());
+        TShared<DX12Factory> dx12Factory = std::dynamic_pointer_cast<DX12Factory>(factory);
+        m_Adapter = GetHardwareAdapter(dx12Factory->GetNativeFactory());
 	}
 
-    void D3D12Adapter::Shutdown()
+    void DX12Adapter::Shutdown()
     {
         m_Adapter->Release();
     }
 
-    const wchar* D3D12::D3D12Adapter::GetDescription()
+    const wchar* DX12Adapter::GetDescription()
     {
         return m_Desc.Description;
     }
 
-    uint64 D3D12::D3D12Adapter::GetDedicatedVideoMemory()
+    uint64 DX12Adapter::GetDedicatedVideoMemory()
     {
         return m_Desc.DedicatedVideoMemory;
     }
 
-    uint64 D3D12::D3D12Adapter::GetSharedSystemMemory()
+    uint64 DX12Adapter::GetSharedSystemMemory()
     {
         return m_Desc.SharedSystemMemory;
     }
 
-    ComPtr<IDXGIAdapter1> D3D12Adapter::GetNativeAdapter()
+    ComPtr<IDXGIAdapter1> DX12Adapter::GetNativeAdapter()
     {
         return m_Adapter;
     }
 
-    ComPtr<IDXGIAdapter1> D3D12Adapter::GetHardwareAdapter(ComPtr<IDXGIFactory4> factory)
+    ComPtr<IDXGIAdapter1> DX12Adapter::GetHardwareAdapter(ComPtr<IDXGIFactory4> factory)
     {
         ComPtr<IDXGIAdapter1> adapter;
         ComPtr<IDXGIFactory6> factory6;
